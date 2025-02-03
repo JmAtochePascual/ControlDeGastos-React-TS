@@ -1,0 +1,41 @@
+import { useState } from "react"
+
+const BudgetForm = () => {
+  const [budget, setBudget] = useState(0);
+  const isNotValid = budget <= 0 || isNaN(budget);
+
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setBudget(parseInt(e.target.value));
+  }
+
+  return (
+    <form className="space-y-5">
+      <div className="space-y-5">
+        <label
+          htmlFor="budget"
+          className="block capitalize text-center font-bold text-4xl text-blue-600">
+          Definir presupuesto
+        </label>
+
+        <input
+          id="budget"
+          name="budget"
+          type="number"
+          placeholder="Ej. 300"
+          min={1}
+          required
+          value={budget}
+          onChange={handleChange}
+          className="w-full p-2 border border-gray-300 outline-none" />
+      </div>
+
+      <input
+        type="submit"
+        value="Definir presupuesto"
+        disabled={isNotValid}
+        className="w-full p-3 font-bold uppercase cursor-pointer text-white bg-blue-600 hover:bg-blue-700 disabled:opacity-30 disabled:cursor-not-allowed md:text-xl" />
+    </form>
+  )
+}
+
+export default BudgetForm
