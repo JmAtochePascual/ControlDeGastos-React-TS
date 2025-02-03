@@ -31,9 +31,8 @@ export const budgetReducer = (state: BudgetState, action: BudgetAction) => {
   }
 
   if (action.type === "add-expense") {
-    return { ...state, expenses: [...state.expenses, action.payload] }
+    return { ...state, expenses: [...state.expenses, action.payload], isModalOpen: !state.isModalOpen }
   }
-
 
   return state;
 }

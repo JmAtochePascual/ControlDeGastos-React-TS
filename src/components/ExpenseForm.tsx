@@ -10,12 +10,12 @@ const ExpenseForm = () => {
   const [expense, setExpense] = useState<TExpense>(INITIAL_EXPENSE);
   const isExpenseValid = [expense.name, expense.amount, expense.category, expense.date].every(Boolean) && expense.amount > 0;
 
-  const handleChange = (e: ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
-    setExpense({ ...expense, [e.target.name]: e.target.name === "amount" ? +e.target.value : e.target.value })
+  const handleChange = (event: ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
+    setExpense({ ...expense, [event.target.name]: event.target.name === "amount" ? +event.target.value : event.target.value })
   }
 
-  const handleSubmit = (e: ChangeEvent<HTMLFormElement>) => {
-    e.preventDefault();
+  const handleSubmit = (event: ChangeEvent<HTMLFormElement>) => {
+    event.preventDefault();
 
     dispatch({ type: "add-expense", payload: { ...expense, id: uuidv4() } });
     setExpense(INITIAL_EXPENSE);

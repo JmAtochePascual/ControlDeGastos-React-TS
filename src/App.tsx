@@ -1,8 +1,7 @@
 import { useContext, useEffect } from "react";
 import BudgetForm from "./components/BudgetForm"
 import { BudgetContext } from "./context/BudgetContext";
-import BudgetTracker from "./components/BudgetTracker";
-import ExpenseModal from "./components/ExpenseModal";
+import ExpenseContainer from "./components/ExpenseContainer";
 
 function App() {
   const { state } = useContext(BudgetContext);
@@ -20,13 +19,10 @@ function App() {
         </h1>
       </header>
 
-      <main className="w-11/12 max-w-4xl mx-auto p-10 rounded-md shadow-md bg-white">
+      <main>
         {
           budget
-            ? <>
-              <BudgetTracker />
-              <ExpenseModal />
-            </>
+            ? <ExpenseContainer />
             : <BudgetForm />
         }
       </main>
