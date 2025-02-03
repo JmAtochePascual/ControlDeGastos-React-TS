@@ -5,11 +5,12 @@ import ExpenseContainer from "./components/ExpenseContainer";
 
 function App() {
   const { state } = useContext(BudgetContext);
-  const { budget } = state;
+  const { budget, expenses } = state;
 
   useEffect(() => {
     localStorage.setItem("budget", JSON.stringify(budget));
-  }, [budget])
+    localStorage.setItem("expenses", JSON.stringify(expenses));
+  }, [expenses, budget]);
 
   return (
     <>

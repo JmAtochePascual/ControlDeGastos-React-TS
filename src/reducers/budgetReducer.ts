@@ -20,7 +20,7 @@ export type BudgetState = {
 
 export const initialBudgetState: BudgetState = {
   budget: Number(localStorage.getItem("budget")) || 0,
-  expenses: [],
+  expenses: JSON.parse(localStorage.getItem("expenses")!) || [],
   editId: "",
   isModalOpen: false,
 }
