@@ -1,6 +1,13 @@
+import { useContext } from "react";
+import { BudgetContext } from "../context/BudgetContext";
 import AmountDisplay from "./AmountDisplay"
 
 const BudgetTracker = () => {
+  const { state } = useContext(BudgetContext);
+  const { budget, expenses } = state;
+  const gastado = expenses.reduce((acc, expense) => acc + expense.amount, 0);
+  const disponible = budget - gastado;
+
   return (
     <section className="w-11/12 max-w-4xl mx-auto mb-10 p-8 rounded-md shadow-md bg-white md:p-10">
       <div className="grid gap-4 md:grid-cols-2 ">
@@ -23,11 +30,11 @@ const BudgetTracker = () => {
             />
             <AmountDisplay
               label="Disponible"
-              amount={600}
+              amount={disponible}
             />
             <AmountDisplay
               label="Gastado"
-              amount={400}
+              amount={gastado}
             />
           </div>
         </div>

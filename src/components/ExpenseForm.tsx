@@ -39,7 +39,7 @@ const ExpenseForm = () => {
       onSubmit={handleSubmit}
       className="space-y-4">
       <legend className="uppercase text-2xl font-bold text-center border-b-2 border-blue-600">
-        Nuevo Gasto
+        {editId ? "Editar Gasto" : "Nuevo Gasto"}
       </legend>
 
       <div>
@@ -127,7 +127,7 @@ const ExpenseForm = () => {
 
       <input
         type="submit"
-        value={editId ? "Editar Gasto" : "Añadir Gasto"}
+        value={editId ? "Guardar Cambios" : "Añadir Gasto"}
         disabled={!isExpenseValid}
         className="w-full p-2 bg-blue-600 text-white font-bold uppercase rounded-md cursor-pointer hover:bg-blue-700 disabled:opacity-35 disabled:cursor-not-allowed" />
     </form>
