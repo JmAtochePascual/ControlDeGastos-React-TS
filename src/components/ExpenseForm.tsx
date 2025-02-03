@@ -1,8 +1,30 @@
+import { v4 as uuidv4 } from 'uuid';
+import { ChangeEvent, useContext, useState } from "react"
 import { categories } from "../data/categories"
+import { INITIAL_EXPENSE } from "../data/expense"
+import { TExpense } from "../types";
+import { BudgetContext } from "../context/BudgetContext";
 
 const ExpenseForm = () => {
+  const { dispatch } = useContext(BudgetContext);
+  const [expense, setExpense] = useState<TExpense>(INITIAL_EXPENSE);
+  const isExpenseValid = [expense.name, expense.amount, expense.category, expense.date].every(Boolean) && expense.amount > 0;
+
+  const handleChange = (e: ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
+    setExpense({ ...expense, [e.target.name]: e.target.name === "amount" ? +e.target.value : e.target.value })
+  }
+
+  const handleSubmit = (e: ChangeEvent<HTMLFormElement>) => {
+    e.preventDefault();
+
+    dispatch({ type: "add-expense", payload: { ...expense, id: uuidv4() } });
+    setExpense(INITIAL_EXPENSE);
+  }
+
   return (
-    <form className="space-y-4">
+    <form
+      onSubmit={handleSubmit}
+      className="space-y-4">
       <legend className="uppercase text-2xl font-bold text-center border-b-2 border-blue-600">
         Nuevo Gasto
       </legend>
@@ -18,7 +40,10 @@ const ExpenseForm = () => {
           type="text"
           name="name"
           id="name"
+          required
           placeholder="Añade el nombre del gasto"
+          value={expense.name}
+          onChange={handleChange}
           className="w-full p-2 block border border-gray-300 rounded-md outline-none" />
       </div>
 
@@ -33,7 +58,11 @@ const ExpenseForm = () => {
           type="number"
           name="amount"
           id="amount"
+          min={1}
+          required
           placeholder="Añade la cantidad del gasto Ej. 100"
+          value={expense.amount}
+          onChange={handleChange}
           className="w-full p-2 block border border-gray-300 rounded-md outline-none" />
       </div>
 
@@ -47,6 +76,9 @@ const ExpenseForm = () => {
         <select
           name="category"
           id="category"
+          required
+          value={expense.category}
+          onChange={handleChange}
           className="w-full p-2 block border text-center border-gray-300 rounded-md outline-none">
           <option value="">-- Seleccione una categoría --</option>
 
@@ -73,14 +105,18 @@ const ExpenseForm = () => {
           type="date"
           name="date"
           id="date"
+          required
           placeholder="Añade la cantidad del gasto Ej. 100"
+          value={expense.date}
+          onChange={handleChange}
           className="w-full p-2 block border border-gray-300 rounded-md outline-none" />
       </div>
 
       <input
         type="submit"
         value="Registrar Gasto"
-        className="w-full p-2 bg-blue-600 text-white font-bold uppercase rounded-md cursor-pointer hover:bg-blue-700" />
+        disabled={!isExpenseValid}
+        className="w-full p-2 bg-blue-600 text-white font-bold uppercase rounded-md cursor-pointer hover:bg-blue-700 disabled:opacity-35 disabled:cursor-not-allowed" />
     </form>
   )
 }
