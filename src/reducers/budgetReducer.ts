@@ -8,7 +8,7 @@ export type BudgetState = {
 }
 
 export const initialBudgetState: BudgetState = {
-  budget: 0
+  budget: Number(localStorage.getItem("budget")) || 0
 }
 
 // Reducer

@@ -1,6 +1,8 @@
-import { ChangeEvent, useState } from "react"
+import { ChangeEvent, FormEvent, useState } from "react"
+import { useBudget } from "../hooks/useBudget";
 
 const BudgetForm = () => {
+  const { dispatch } = useBudget();
   const [budget, setBudget] = useState(0);
   const isNotValid = budget <= 0 || isNaN(budget);
 
@@ -8,8 +10,16 @@ const BudgetForm = () => {
     setBudget(+e.target.value);
   }
 
+  const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+
+    dispatch({ type: "add-budget", payload: budget });
+  }
+
   return (
-    <form className="space-y-5">
+    <form
+      onSubmit={handleSubmit}
+      className="space-y-5">
       <div className="space-y-5">
         <label
           htmlFor="budget"

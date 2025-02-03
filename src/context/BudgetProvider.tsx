@@ -5,7 +5,7 @@ import { BudgetContext } from "./BudgetContext";
 type BudgetProviderProps = {
   children: ReactNode;
 }
-
+// Segundo se Crea el Provider
 const BudgetProvider = ({ children }: BudgetProviderProps) => {
   const [state, dispatch] = useReducer(budgetReducer, initialBudgetState);
 

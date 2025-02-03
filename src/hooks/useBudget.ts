@@ -1,7 +1,7 @@
 import { useContext } from "react"
 import { BudgetContext } from "../context/BudgetContext";
 
-
+// Tercero se Crea el custom hook para consumir el contexto
 export const useBudget = () => {
   const context = useContext(BudgetContext);
 

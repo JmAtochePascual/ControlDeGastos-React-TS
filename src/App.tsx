@@ -1,6 +1,13 @@
+import { useContext, useEffect } from "react";
 import BudgetForm from "./components/BudgetForm"
+import { BudgetContext } from "./context/BudgetContext";
 
 function App() {
+  const { state } = useContext(BudgetContext);
+
+  useEffect(() => {
+    localStorage.setItem("budget", JSON.stringify(state.budget));
+  }, [state.budget])
 
   return (
     <>

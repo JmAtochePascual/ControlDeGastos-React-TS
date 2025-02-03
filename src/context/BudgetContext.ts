@@ -6,4 +6,5 @@ type BudgetContextProps = {
   dispatch: Dispatch<BudgetAction>;
 }
 
+// Primero se Crea el Contexto
 export const BudgetContext = createContext<BudgetContextProps>(null!);
