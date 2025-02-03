@@ -2,6 +2,7 @@ import { useContext, useEffect } from "react";
 import BudgetForm from "./components/BudgetForm"
 import { BudgetContext } from "./context/BudgetContext";
 import BudgetTracker from "./components/BudgetTracker";
+import ExpenseModal from "./components/ExpenseModal";
 
 function App() {
   const { state } = useContext(BudgetContext);
@@ -22,7 +23,10 @@ function App() {
       <main className="w-11/12 max-w-4xl mx-auto p-10 rounded-md shadow-md bg-white">
         {
           budget
-            ? <BudgetTracker />
+            ? <>
+              <BudgetTracker />
+              <ExpenseModal />
+            </>
             : <BudgetForm />
         }
       </main>
