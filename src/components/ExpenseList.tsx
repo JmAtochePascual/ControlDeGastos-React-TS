@@ -10,7 +10,7 @@ const ExpenseList = () => {
 
   return (
     <section className="w-11/12 max-w-4xl mx-auto pb-20">
-      <h2 className="mb-4 text-center text-4xl font-bold text-gray-600">Lista de Gastos</h2>
+      <h2 className="mb-8 text-center text-4xl font-bold text-gray-600">Lista de Gastos</h2>
 
       {
         isExpensesEmpty

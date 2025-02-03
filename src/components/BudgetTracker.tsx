@@ -2,7 +2,7 @@ import AmountDisplay from "./AmountDisplay"
 
 const BudgetTracker = () => {
   return (
-    <section className="w-11/12 max-w-4xl mx-auto mb-10 p-10 rounded-md shadow-md bg-white">
+    <section className="w-11/12 max-w-4xl mx-auto mb-10 p-8 rounded-md shadow-md bg-white md:p-10">
       <div className="grid gap-4 md:grid-cols-2 ">
         <div className="flex justify-center items-center">
           <img
