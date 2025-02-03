@@ -1,11 +1,11 @@
-import { useState } from "react"
+import { ChangeEvent, useState } from "react"
 
 const BudgetForm = () => {
   const [budget, setBudget] = useState(0);
   const isNotValid = budget <= 0 || isNaN(budget);
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setBudget(parseInt(e.target.value));
+  const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
+    setBudget(+e.target.value);
   }
 
   return (
