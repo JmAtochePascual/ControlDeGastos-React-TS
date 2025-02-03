@@ -4,6 +4,7 @@ import { TExpense } from "../types";
 export type BudgetAction =
   { type: "add-budget"; payload: number } |
   { type: "add-expense"; payload: TExpense } |
+  { type: "delete-expense"; payload: string } |
   { type: "show-modal"; }
 
 // Initial State
@@ -32,6 +33,10 @@ export const budgetReducer = (state: BudgetState, action: BudgetAction) => {
 
   if (action.type === "add-expense") {
     return { ...state, expenses: [...state.expenses, action.payload], isModalOpen: !state.isModalOpen }
+  }
+
+  if (action.type === "delete-expense") {
+    return { ...state, expenses: state.expenses.filter(expense => expense.id !== action.payload) }
   }
 
   return state;

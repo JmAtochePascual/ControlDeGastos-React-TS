@@ -11,6 +11,8 @@ import { categories } from "../data/categories";
 import { TExpense } from "../types"
 import { formatDate } from "../utils";
 import AmountDisplay from "./AmountDisplay";
+import { BudgetContext } from '../context/BudgetContext';
+import { useContext } from 'react';
 
 type TExpenseDetailsProps = {
   expense: TExpense
@@ -25,25 +27,30 @@ const leadingActions = () => (
   </LeadingActions>
 );
 
-const trailingActions = () => (
+const trailingActions = (handleDelete: () => void) => (
   <TrailingActions>
     <SwipeAction
       destructive={true}
-      onClick={() => console.info('swipe action triggered')}>
+      onClick={() => handleDelete()}>
       Eliminar
     </SwipeAction>
   </TrailingActions>
 );
 
 const ExpenseDetails = ({ expense }: TExpenseDetailsProps) => {
-  const { name, amount, category, date } = expense;
+  const { dispatch } = useContext(BudgetContext);
+  const { name, amount, category, date, id } = expense;
   const categoryInfo = categories.filter(cat => cat.id === category)[0];
+
+  const handleDelete = () => {
+    dispatch({ type: "delete-expense", payload: id });
+  }
 
   return (
     <SwipeableList>
       <SwipeableListItem
         leadingActions={leadingActions()}
-        trailingActions={trailingActions()}>
+        trailingActions={trailingActions(handleDelete)}>
         <div className="w-full p-4 flex flex-col border-b-2 border-slate-300 bg-white md:flex-row md:p-10 md:justify-between md:items-center cursor-grab">
           <div className="flex gap-4">
             <img
