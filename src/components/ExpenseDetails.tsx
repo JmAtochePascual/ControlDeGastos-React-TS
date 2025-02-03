@@ -18,39 +18,36 @@ type TExpenseDetailsProps = {
   expense: TExpense
 }
 
-const leadingActions = () => (
-  <LeadingActions>
-    <SwipeAction
-      onClick={() => console.info('swipe action triggered')}>
-      Editar
-    </SwipeAction>
-  </LeadingActions>
-);
-
-const trailingActions = (handleDelete: () => void) => (
-  <TrailingActions>
-    <SwipeAction
-      destructive={true}
-      onClick={() => handleDelete()}>
-      Eliminar
-    </SwipeAction>
-  </TrailingActions>
-);
-
 const ExpenseDetails = ({ expense }: TExpenseDetailsProps) => {
   const { dispatch } = useContext(BudgetContext);
   const { name, amount, category, date, id } = expense;
   const categoryInfo = categories.filter(cat => cat.id === category)[0];
 
-  const handleDelete = () => {
-    dispatch({ type: "delete-expense", payload: id });
-  }
+
+  const leadingActions = () => (
+    <LeadingActions>
+      <SwipeAction
+        onClick={() => dispatch({ type: "set-editId", payload: id })}>
+        Editar
+      </SwipeAction>
+    </LeadingActions>
+  );
+
+  const trailingActions = () => (
+    <TrailingActions>
+      <SwipeAction
+        destructive={true}
+        onClick={() => dispatch({ type: "delete-expense", payload: id })}>
+        Eliminar
+      </SwipeAction>
+    </TrailingActions>
+  );
 
   return (
     <SwipeableList>
       <SwipeableListItem
         leadingActions={leadingActions()}
-        trailingActions={trailingActions(handleDelete)}>
+        trailingActions={trailingActions()}>
         <div className="w-full p-4 flex flex-col border-b-2 border-slate-300 bg-white md:flex-row md:p-10 md:justify-between md:items-center cursor-grab">
           <div className="flex gap-4">
             <img
