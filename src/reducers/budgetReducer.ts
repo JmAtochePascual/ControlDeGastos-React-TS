@@ -4,9 +4,11 @@ import { TExpense } from "../types";
 export type BudgetAction =
   { type: "add-budget"; payload: number } |
   { type: "add-expense"; payload: TExpense } |
+  { type: "edit-expense"; payload: TExpense } |
   { type: "delete-expense"; payload: string } |
   { type: "set-editId"; payload: TExpense['id'] } |
-  { type: "show-modal"; }
+  { type: "show-modal"; } |
+  { type: "hide-modal"; }
 
 // Initial State
 export type BudgetState = {
@@ -30,20 +32,33 @@ export const budgetReducer = (state: BudgetState, action: BudgetAction) => {
     return { ...state, budget: action.payload }
   }
 
-  if (action.type === "show-modal") {
-    return { ...state, isModalOpen: !state.isModalOpen }
-  }
-
   if (action.type === "add-expense") {
     return { ...state, expenses: [...state.expenses, action.payload], isModalOpen: !state.isModalOpen }
   }
 
-  if (action.type === "set-editId") {
-    return { ...state, editId: action.payload }
+  if (action.type === "edit-expense") {
+    return {
+      ...state,
+      expenses: state.expenses.map(expense => expense.id === action.payload.id ? action.payload : expense),
+      isModalOpen: !state.isModalOpen,
+      editId: ""
+    }
   }
 
   if (action.type === "delete-expense") {
     return { ...state, expenses: state.expenses.filter(expense => expense.id !== action.payload) }
+  }
+
+  if (action.type === "set-editId") {
+    return { ...state, editId: action.payload, isModalOpen: !state.isModalOpen }
+  }
+
+  if (action.type === "show-modal") {
+    return { ...state, isModalOpen: true }
+  }
+
+  if (action.type === "hide-modal") {
+    return { ...state, isModalOpen: false, editId: "" }
   }
 
   return state;

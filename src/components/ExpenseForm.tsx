@@ -1,14 +1,22 @@
 import { v4 as uuidv4 } from 'uuid';
-import { ChangeEvent, useContext, useState } from "react"
+import { ChangeEvent, useContext, useEffect, useState } from "react"
 import { categories } from "../data/categories"
 import { INITIAL_EXPENSE } from "../data/expense"
 import { TExpense } from "../types";
 import { BudgetContext } from "../context/BudgetContext";
 
 const ExpenseForm = () => {
-  const { dispatch } = useContext(BudgetContext);
+  const { state, dispatch } = useContext(BudgetContext);
+  const { editId, expenses } = state;
   const [expense, setExpense] = useState<TExpense>(INITIAL_EXPENSE);
   const isExpenseValid = [expense.name, expense.amount, expense.category, expense.date].every(Boolean) && expense.amount > 0;
+
+  useEffect(() => {
+    if (editId) {
+      const expenseToEdit = expenses.filter(expense => expense.id === editId)[0];
+      setExpense(expenseToEdit);
+    }
+  }, [editId, expenses]);
 
   const handleChange = (event: ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
     setExpense({ ...expense, [event.target.name]: event.target.name === "amount" ? +event.target.value : event.target.value })
@@ -17,7 +25,12 @@ const ExpenseForm = () => {
   const handleSubmit = (event: ChangeEvent<HTMLFormElement>) => {
     event.preventDefault();
 
-    dispatch({ type: "add-expense", payload: { ...expense, id: uuidv4() } });
+    if (editId) {
+      dispatch({ type: "edit-expense", payload: { ...expense, id: editId } });
+    } else {
+      dispatch({ type: "add-expense", payload: { ...expense, id: uuidv4() } });
+    }
+
     setExpense(INITIAL_EXPENSE);
   }
 
@@ -114,7 +127,7 @@ const ExpenseForm = () => {
 
       <input
         type="submit"
-        value="Registrar Gasto"
+        value={editId ? "Editar Gasto" : "Añadir Gasto"}
         disabled={!isExpenseValid}
         className="w-full p-2 bg-blue-600 text-white font-bold uppercase rounded-md cursor-pointer hover:bg-blue-700 disabled:opacity-35 disabled:cursor-not-allowed" />
     </form>

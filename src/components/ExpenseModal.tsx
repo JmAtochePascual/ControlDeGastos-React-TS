@@ -21,7 +21,7 @@ export default function ExpenseModal() {
       <Dialog
         open={isModalOpen}
         as="div"
-        onClose={() => dispatch({ type: "show-modal" })}
+        onClose={() => dispatch({ type: "hide-modal" })}
         className="relative z-10 focus:outline-none">
         <div className="fixed inset-0 z-10 w-screen overflow-y-auto bg-black bg-opacity-75">
           <div className="flex min-h-full items-center justify-center p-4">
