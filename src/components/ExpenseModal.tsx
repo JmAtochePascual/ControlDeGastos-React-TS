@@ -2,6 +2,7 @@ import { useContext } from 'react'
 import { PlusCircleIcon } from '@heroicons/react/24/solid'
 import { Dialog, DialogPanel } from '@headlessui/react'
 import { BudgetContext } from '../context/BudgetContext'
+import ExpenseForm from './ExpenseForm';
 
 export default function ExpenseModal() {
   const { state, dispatch } = useContext(BudgetContext);
@@ -28,7 +29,7 @@ export default function ExpenseModal() {
               transition
               className="w-full max-w-xl rounded-xl bg-white p-6 backdrop-blur-2xl duration-300 ease-out data-[closed]:transform-[scale(95%)] data-[closed]:opacity-0">
 
-              Formulario
+              <ExpenseForm />
 
             </DialogPanel>
           </div>
