@@ -51,7 +51,7 @@ const ExpenseDetails = ({ expense }: TExpenseDetailsProps) => {
         <div className="w-full p-4 flex flex-col border-b-2 border-slate-300 bg-white md:flex-row md:p-10 md:justify-between md:items-center cursor-grab">
           <div className="flex gap-4">
             <img
-              src={`/icons/icono_${categoryInfo.icon}.svg`}
+              src={`icons/icono_${categoryInfo.icon}.svg`}
               alt=""
               className="w-12 md:w-20" />
 
