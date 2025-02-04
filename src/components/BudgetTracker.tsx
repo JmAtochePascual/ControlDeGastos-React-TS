@@ -5,10 +5,8 @@ import { BudgetContext } from "../context/BudgetContext";
 import AmountDisplay from "./AmountDisplay"
 
 const BudgetTracker = () => {
-  const { state, dispatch } = useContext(BudgetContext);
-  const { budget, expenses } = state;
-  const gastado = expenses.reduce((acc, expense) => acc + expense.amount, 0);
-  const disponible = budget - gastado;
+  const { state, dispatch, gastado, disponible } = useContext(BudgetContext);
+  const { budget } = state;
   const percentage = +((gastado / budget) * 100).toFixed(2);
 
   return (

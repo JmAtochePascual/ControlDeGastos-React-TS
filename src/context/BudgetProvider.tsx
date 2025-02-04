@@ -8,9 +8,12 @@ type BudgetProviderProps = {
 // Segundo se Crea el Provider
 const BudgetProvider = ({ children }: BudgetProviderProps) => {
   const [state, dispatch] = useReducer(budgetReducer, initialBudgetState);
+  const gastado = state.expenses.reduce((acc, expense) => acc + expense.amount, 0);
+  const disponible = state.budget - gastado;
 
   return (
-    <BudgetContext.Provider value={{ state, dispatch }}>
+    <BudgetContext.Provider
+      value={{ state, dispatch, gastado, disponible }}>
       {children}
     </BudgetContext.Provider>
   )

@@ -7,14 +7,12 @@ import { BudgetContext } from "../context/BudgetContext";
 import Error from './Error';
 
 const ExpenseForm = () => {
-  const { state, dispatch } = useContext(BudgetContext);
-  const { budget, editId, expenses } = state;
+  const { state, dispatch, disponible } = useContext(BudgetContext);
+  const { editId, expenses } = state;
   const [expense, setExpense] = useState<TExpense>(INITIAL_EXPENSE);
   const [previusAmount, setPreviusAmount] = useState(0);
   const [error, setError] = useState("");
   const isExpenseValid = [expense.name, expense.amount, expense.category, expense.date].every(Boolean) && expense.amount > 0;
-  const gastado = expenses.reduce((acc, expense) => acc + expense.amount, 0);
-  const disponible = budget - gastado;
 
   useEffect(() => {
     if (editId) {
