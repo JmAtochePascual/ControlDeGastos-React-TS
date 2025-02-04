@@ -4,17 +4,23 @@ import { categories } from "../data/categories"
 import { INITIAL_EXPENSE } from "../data/expense"
 import { TExpense } from "../types";
 import { BudgetContext } from "../context/BudgetContext";
+import Error from './Error';
 
 const ExpenseForm = () => {
   const { state, dispatch } = useContext(BudgetContext);
-  const { editId, expenses } = state;
+  const { budget, editId, expenses } = state;
   const [expense, setExpense] = useState<TExpense>(INITIAL_EXPENSE);
+  const [previusAmount, setPreviusAmount] = useState(0);
+  const [error, setError] = useState("");
   const isExpenseValid = [expense.name, expense.amount, expense.category, expense.date].every(Boolean) && expense.amount > 0;
+  const gastado = expenses.reduce((acc, expense) => acc + expense.amount, 0);
+  const disponible = budget - gastado;
 
   useEffect(() => {
     if (editId) {
       const expenseToEdit = expenses.filter(expense => expense.id === editId)[0];
       setExpense(expenseToEdit);
+      setPreviusAmount(expenseToEdit.amount);
     }
   }, [editId, expenses]);
 
@@ -24,6 +30,12 @@ const ExpenseForm = () => {
 
   const handleSubmit = (event: ChangeEvent<HTMLFormElement>) => {
     event.preventDefault();
+
+    // Validar que no se pueda gastar más de lo que queda disponible
+    if ((expense.amount - previusAmount) > disponible) {
+      setError("No puedes gastar más de lo que queda disponible");
+      return;
+    }
 
     if (editId) {
       dispatch({ type: "edit-expense", payload: { ...expense, id: editId } });
@@ -42,6 +54,10 @@ const ExpenseForm = () => {
         {editId ? "Editar Gasto" : "Nuevo Gasto"}
       </legend>
 
+      {
+        error && <Error message={error} />
+
+      }
       <div>
         <label
           htmlFor="name"

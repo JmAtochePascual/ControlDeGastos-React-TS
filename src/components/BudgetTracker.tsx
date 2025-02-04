@@ -26,7 +26,7 @@ const BudgetTracker = () => {
           <div className="space-y-4">
             <AmountDisplay
               label="Presupuesto"
-              amount={1000}
+              amount={budget}
             />
             <AmountDisplay
               label="Disponible"
