@@ -54,10 +54,8 @@ const ExpenseForm = () => {
         {editId ? "Editar Gasto" : "Nuevo Gasto"}
       </legend>
 
-      {
-        error && <Error message={error} />
+      {error && <Error message={error} />}
 
-      }
       <div>
         <label
           htmlFor="name"

@@ -5,7 +5,7 @@ import { BudgetContext } from "../context/BudgetContext";
 import AmountDisplay from "./AmountDisplay"
 
 const BudgetTracker = () => {
-  const { state } = useContext(BudgetContext);
+  const { state, dispatch } = useContext(BudgetContext);
   const { budget, expenses } = state;
   const gastado = expenses.reduce((acc, expense) => acc + expense.amount, 0);
   const disponible = budget - gastado;
@@ -23,14 +23,16 @@ const BudgetTracker = () => {
               pathTransitionDuration: 0.9,
               pathColor: percentage === 100 ? '#dc2626' : '#3B82F6',
               textColor: percentage === 100 ? '#dc2626' : '#3B82F6',
-              trailColor: '#F5F5F5',
+              trailColor: '#e1e1e1',
               backgroundColor: '#3e98c7',
             })}
             className='w-full max-w-60' />
         </div>
 
         <div className="">
-          <button className="w-full mb-8 p-2 font-bold uppercase rounded-md text-white bg-pink-600 hover:bg-pink-700">
+          <button
+            onClick={() => dispatch({ type: "reset-app" })}
+            className="w-full mb-8 p-2 font-bold uppercase rounded-md text-white bg-pink-600 hover:bg-pink-700">
             resetear app
           </button>
 

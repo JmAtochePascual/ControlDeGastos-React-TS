@@ -8,8 +8,9 @@ export type BudgetAction =
   { type: "delete-expense"; payload: string } |
   { type: "set-editId"; payload: TExpense['id'] } |
   { type: "set-filterCategory"; payload: TCategory['id'] } |
-  { type: "show-modal"; } |
-  { type: "hide-modal"; }
+  { type: "reset-app" } |
+  { type: "show-modal" } |
+  { type: "hide-modal" }
 
 // Initial State
 export type BudgetState = {
@@ -66,6 +67,10 @@ export const budgetReducer = (state: BudgetState, action: BudgetAction) => {
 
   if (action.type === "hide-modal") {
     return { ...state, isModalOpen: false, editId: "" }
+  }
+
+  if (action.type === "reset-app") {
+    return { budget: 0, expenses: [] }
   }
 
   return state;
