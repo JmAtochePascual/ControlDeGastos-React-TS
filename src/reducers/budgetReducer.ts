@@ -70,7 +70,7 @@ export const budgetReducer = (state: BudgetState, action: BudgetAction) => {
   }
 
   if (action.type === "reset-app") {
-    return { budget: 0, expenses: [] }
+    return { budget: 0, expenses: [], editId: "", filterCategoryId: "", isModalOpen: false }
   }
 
   return state;
