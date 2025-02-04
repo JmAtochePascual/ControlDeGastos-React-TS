@@ -1,3 +1,5 @@
+import { CircularProgressbar, buildStyles } from 'react-circular-progressbar';
+import 'react-circular-progressbar/dist/styles.css';
 import { useContext } from "react";
 import { BudgetContext } from "../context/BudgetContext";
 import AmountDisplay from "./AmountDisplay"
@@ -7,15 +9,25 @@ const BudgetTracker = () => {
   const { budget, expenses } = state;
   const gastado = expenses.reduce((acc, expense) => acc + expense.amount, 0);
   const disponible = budget - gastado;
+  const percentage = +((gastado / budget) * 100).toFixed(2);
 
   return (
     <section className="w-11/12 max-w-4xl mx-auto mb-10 p-8 rounded-md shadow-md bg-white md:p-10">
       <div className="grid gap-4 md:grid-cols-2 ">
         <div className="flex justify-center items-center">
-          <img
-            src="grafico.jpg"
-            alt="Imagen del tracker de gasto"
-            className="w-full max-w-60" />
+          <CircularProgressbar
+            value={percentage}
+            text={`${percentage}% Gastado`}
+            styles={buildStyles({
+              strokeLinecap: 'butt',
+              textSize: '10px',
+              pathTransitionDuration: 0.9,
+              pathColor: percentage === 100 ? '#dc2626' : '#3B82F6',
+              textColor: percentage === 100 ? '#dc2626' : '#3B82F6',
+              trailColor: '#F5F5F5',
+              backgroundColor: '#3e98c7',
+            })}
+            className='w-full max-w-60' />
         </div>
 
         <div className="">
