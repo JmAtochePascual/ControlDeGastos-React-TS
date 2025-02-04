@@ -1,50 +1,120 @@
-# React + TypeScript + Vite
+# ⚡️ Control de Gasto
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Control de Gasto es una aplicación web diseñada para ayudar a los usuarios a administrar sus gastos de manera efectiva. Ofrece la capacidad de establecer un presupuesto y registrar gastos, lo que permite a los usuarios llevar un seguimiento detallado de sus finanzas y tomar decisiones informadas sobre sus gastos futuros.
 
-Currently, two official plugins are available:
+## 🛠️ Tecnologías Utilizadas
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+- **React**: Framework principal para la construcción de la interfaz de usuario
+- **TypeScript**: Lenguaje de programación que agrega tipado estático a JavaScript
+- **Vite**: Herramienta de compilación que ofrece un entorno de desarrollo más rápido
+- **TailwindCSS**: Framework para los estilos del proyecto
+- **LocalStorage**: Para persistir el estado del carrito de compras
+- **ESLint**: Para mantener la calidad y consistencia del código
+- **Git**: Sistema de control de versiones
+- **GitHub Pages**: Para el despliegue de la aplicación
+- **Reducer**: Para gestionar el estado global del carrito de compras de manera eficiente
+- **ContextAPI**: Para proporcionar un estado global accesible en toda la aplicación
+- **Custom Hooks**: Para reutilizar lógica específica y mantener el código más limpio y modular
 
-## Expanding the ESLint configuration
+## 📁 Estructura del Proyecto
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+- **src/**: Contiene el código fuente de la aplicación.
+  - **components/**: Componentes reutilizables que forman la interfaz de usuario.
+    - `BudgetTracker.tsx`: Componente que muestra el presupuesto y el estado de los gastos.
+    - `ExpenseContainer.tsx`: Contenedor que agrupa los componentes relacionados con los gastos.
+    - `ExpenseDetails.tsx`: Componente que muestra los detalles de un gasto individual.
+    - `ExpenseFilter.tsx`: Componente que permite filtrar los gastos por categoría.
+    - `ExpenseForm.tsx`: Componente para agregar o editar un gasto.
+    - `ExpenseList.tsx`: Componente que muestra la lista de gastos.
+    - `ExpenseModal.tsx`: Componente que muestra un modal para agregar o editar un gasto.
+    - `Error.tsx`: Componente para mostrar mensajes de error.
+    - `AmountDisplay.tsx`: Componente para mostrar cantidades monetarias.
+  - **hooks/**: Contiene hooks personalizados que encapsulan la lógica de la aplicación.
+    - `useOrder.ts`: Hook personalizado para la lógica de la orden (si aplica).
+  - **data/**: Archivos que contienen datos estáticos utilizados en la aplicación.
+    - `categories.ts`: Define las categorías de actividades (comida y ejercicio) y el estado inicial de una actividad.
+    - `expense.ts`: Define el estado inicial de un gasto.
+  - **types/**: Tipos y interfaces compartidos que definen la estructura de los datos.
+    - `index.ts`: Tipos y interfaces utilizados en toda la aplicación.
+  - **reducers/**: Contiene la lógica de gestión del estado de las actividades.
+    - `budgetReducer.ts`: Reducer que maneja las acciones relacionadas con el presupuesto y los gastos.
+  - `App.tsx`: Componente principal que integra todos los componentes y gestiona el estado global.
 
-- Configure the top-level `parserOptions` property like this:
+## 🚀 Características Principales
 
-```js
-export default tseslint.config({
-  languageOptions: {
-    // other options...
-    parserOptions: {
-      project: ['./tsconfig.node.json', './tsconfig.app.json'],
-      tsconfigRootDir: import.meta.dirname,
-    },
-  },
-})
-```
+- **Registro de Gastos**: Permite a los usuarios agregar gastos, especificando la cantidad, categoría y fecha.
+- **Cálculo de Presupuesto**: Muestra el presupuesto total, el gasto realizado y el saldo disponible.
+- **Interfaz Responsiva**: Asegura que la aplicación se vea bien en dispositivos de diferentes tamaños.
+- **Persistencia de Datos**: Utiliza `localStorage` para mantener el registro de gastos incluso después de recargar la página.
+- **Manejo de Estado**: Utiliza `useReducer` para gestionar el estado de los gastos de manera eficiente.
+- **Filtrado de Gastos**: Permite a los usuarios filtrar los gastos por categoría.
+- **Despliegue Automático**: Facilita el acceso a la aplicación en línea a través de GitHub Pages.
 
-- Replace `tseslint.configs.recommended` to `tseslint.configs.recommendedTypeChecked` or `tseslint.configs.strictTypeChecked`
-- Optionally add `...tseslint.configs.stylisticTypeChecked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and update the config:
+## 🛠️ Instalación y Uso
 
-```js
-// eslint.config.js
-import react from 'eslint-plugin-react'
+1. Clona el repositorio:
 
-export default tseslint.config({
-  // Set the react version
-  settings: { react: { version: '18.3' } },
-  plugins: {
-    // Add the react plugin
-    react,
-  },
-  rules: {
-    // other rules...
-    // Enable its recommended rules
-    ...react.configs.recommended.rules,
-    ...react.configs['jsx-runtime'].rules,
-  },
-})
-```
+   ```bash
+   git clone https://github.com/JMatochePascual/ControlDeGastos-React-TS.git
+   ```
+
+2. Instala las dependencias:
+
+   ```bash
+   npm install
+   ```
+
+3. Inicia el servidor de desarrollo:
+
+   ```bash
+   npm run dev
+   ```
+
+4. Abre tu navegador en:
+   ```bash
+   http://localhost:5173
+   ```
+
+## 🤝 Contribución
+
+Si deseas contribuir al proyecto, sigue estos pasos:
+
+1. Haz un Fork del repositorio:
+
+   ```bash
+   git remote add upstream https://github.com/JMatochePascual/ControlDeGastos-React-TS.git
+   ```
+
+2. Crea una nueva rama:
+
+   ```bash
+   git checkout -b feature/nueva-caracteristica
+   ```
+
+3. Realiza tus cambios y haz commit:
+
+   ```bash
+   git add .
+   git commit -m "Agrega nueva característica"
+   ```
+
+4. Sube los cambios a tu Fork:
+
+   ```bash
+   git push origin feature/nueva-caracteristica
+   ```
+
+5. Abre un Pull Request desde tu repositorio al repositorio original.
+
+Por favor, antes de realizar cambios importantes:
+
+- Abre un Issue para discutir las modificaciones propuestas.
+- Asegúrate de que tu código sigue las convenciones del proyecto.
+- Incluye tests si es necesario.
+- Actualiza la documentación según corresponda.
+
+## 📝 Licencia
+
+Este proyecto está bajo la licencia [MIT](https://opensource.org/licenses/MIT).
+
+<p style="text-align: center">Hecho con 💚 por JMCode | ©2025 - Transformando ideas en realidad.</p>
