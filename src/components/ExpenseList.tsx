@@ -4,9 +4,9 @@ import ExpenseDetails from "./ExpenseDetails";
 
 const ExpenseList = () => {
   const { state } = useContext(BudgetContext);
-  const { expenses } = state;
+  const { expenses, filterCategoryId } = state;
   const isExpensesEmpty = expenses.length === 0;
-
+  const expensedFiltered = filterCategoryId ? expenses.filter(expense => expense.category === filterCategoryId) : expenses;
 
   return (
     <section className="w-11/12 max-w-4xl mx-auto pb-20">
@@ -18,7 +18,7 @@ const ExpenseList = () => {
           ? <p className="text-center text-lg font-semibold text-gray-400">No hay gastos registrados</p>
           : <>
             {
-              expenses.map(expense =>
+              expensedFiltered.map(expense =>
                 <ExpenseDetails
                   key={expense.id}
                   expense={expense}

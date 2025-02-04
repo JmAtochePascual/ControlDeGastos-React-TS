@@ -1,4 +1,4 @@
-import { TExpense } from "../types";
+import { TCategory, TExpense } from "../types";
 
 // Actions
 export type BudgetAction =
@@ -7,6 +7,7 @@ export type BudgetAction =
   { type: "edit-expense"; payload: TExpense } |
   { type: "delete-expense"; payload: string } |
   { type: "set-editId"; payload: TExpense['id'] } |
+  { type: "set-filterCategory"; payload: TCategory['id'] } |
   { type: "show-modal"; } |
   { type: "hide-modal"; }
 
@@ -15,6 +16,7 @@ export type BudgetState = {
   budget: number;
   expenses: TExpense[];
   editId: TExpense['id'];
+  filterCategoryId: TCategory['id'];
   isModalOpen: boolean;
 }
 
@@ -22,6 +24,7 @@ export const initialBudgetState: BudgetState = {
   budget: Number(localStorage.getItem("budget")) || 0,
   expenses: JSON.parse(localStorage.getItem("expenses")!) || [],
   editId: "",
+  filterCategoryId: "",
   isModalOpen: false,
 }
 
@@ -51,6 +54,10 @@ export const budgetReducer = (state: BudgetState, action: BudgetAction) => {
 
   if (action.type === "set-editId") {
     return { ...state, editId: action.payload, isModalOpen: !state.isModalOpen }
+  }
+
+  if (action.type === "set-filterCategory") {
+    return { ...state, filterCategoryId: action.payload }
   }
 
   if (action.type === "show-modal") {

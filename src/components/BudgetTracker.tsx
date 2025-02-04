@@ -19,7 +19,6 @@ const BudgetTracker = () => {
             value={percentage}
             text={`${percentage}% Gastado`}
             styles={buildStyles({
-              strokeLinecap: 'butt',
               textSize: '10px',
               pathTransitionDuration: 0.9,
               pathColor: percentage === 100 ? '#dc2626' : '#3B82F6',
