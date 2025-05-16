@@ -28,7 +28,7 @@ function App() {
         }
       </main>
 
-      <footer className='py-4 bg-blue-600'>
+      <footer className='fixed w-full bottom-0 py-1 bg-blue-600'>
         <p className="p-4 text-center md:text-start text-white"> <span className="font-bold">JMCode</span> | ©2025 - Transformando ideas en realidad.</p>
       </footer>
     </>
