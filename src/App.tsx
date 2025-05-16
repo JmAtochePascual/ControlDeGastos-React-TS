@@ -1,7 +1,6 @@
 import { useContext, useEffect } from "react";
-import BudgetForm from "./components/BudgetForm"
 import { BudgetContext } from "./context/BudgetContext";
-import ExpenseContainer from "./components/ExpenseContainer";
+import { BudgetForm, ExpenseContainer } from "./components";
 
 function App() {
   const { state } = useContext(BudgetContext);

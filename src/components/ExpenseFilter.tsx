@@ -2,7 +2,7 @@ import { ChangeEvent, useContext } from "react";
 import { BudgetContext } from "../context/BudgetContext";
 import { categories } from "../data/categories"
 
-const ExpenseFilter = () => {
+export const ExpenseFilter = () => {
   const { dispatch } = useContext(BudgetContext);
 
   const handleChange = (event: ChangeEvent<HTMLSelectElement>) => {
@@ -37,6 +37,4 @@ const ExpenseFilter = () => {
       </form>
     </section>
   )
-}
-
-export default ExpenseFilter
+};

@@ -2,7 +2,7 @@ type TErrorProps = {
   message: string
 }
 
-const Error = ({ message }: TErrorProps) => {
+export const Error = ({ message }: TErrorProps) => {
 
   return (
     <div
@@ -11,6 +11,4 @@ const Error = ({ message }: TErrorProps) => {
       {message}
     </div>
   )
-}
-
-export default Error
+};

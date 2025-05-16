@@ -1,9 +1,9 @@
-import BudgetTracker from "./BudgetTracker"
-import ExpenseFilter from "./ExpenseFilter"
-import ExpenseList from "./ExpenseList"
-import ExpenseModal from "./ExpenseModal"
+import { BudgetTracker } from "./BudgetTracker";
+import { ExpenseFilter } from "./ExpenseFilter";
+import { ExpenseList } from "./ExpenseList";
+import { ExpenseModal } from "./ExpenseModal";
 
-const ExpenseContainer = () => {
+export const ExpenseContainer = () => {
 
   return (
     <>
@@ -13,6 +13,4 @@ const ExpenseContainer = () => {
       <ExpenseModal />
     </>
   )
-}
-
-export default ExpenseContainer
+};

@@ -10,15 +10,15 @@ import 'react-swipeable-list/dist/styles.css';
 import { categories } from "../data/categories";
 import { TExpense } from "../types"
 import { formatDate } from "../utils";
-import AmountDisplay from "./AmountDisplay";
 import { BudgetContext } from '../context/BudgetContext';
 import { useContext } from 'react';
+import { AmountDisplay } from './AmountDisplay';
 
 type TExpenseDetailsProps = {
   expense: TExpense
 }
 
-const ExpenseDetails = ({ expense }: TExpenseDetailsProps) => {
+export const ExpenseDetails = ({ expense }: TExpenseDetailsProps) => {
   const { dispatch } = useContext(BudgetContext);
   const { name, amount, category, date, id } = expense;
   const categoryInfo = categories.filter(cat => cat.id === category)[0];
@@ -71,6 +71,4 @@ const ExpenseDetails = ({ expense }: TExpenseDetailsProps) => {
       </SwipeableListItem>
     </SwipeableList>
   )
-}
-
-export default ExpenseDetails
+};

@@ -1,20 +1,20 @@
 import { ChangeEvent, FormEvent, useState } from "react"
 import { useBudget } from "../hooks/useBudget";
 
-const BudgetForm = () => {
+export const BudgetForm = () => {
   const { dispatch } = useBudget();
   const [budget, setBudget] = useState(0);
   const isNotValid = budget <= 0 || isNaN(budget);
 
   const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
     setBudget(+e.target.value);
-  }
+  };
 
   const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
     dispatch({ type: "add-budget", payload: budget });
-  }
+  };
 
   return (
     <div className="w-11/12 max-w-4xl mx-auto p-10 rounded-md shadow-md bg-white">
@@ -48,6 +48,4 @@ const BudgetForm = () => {
       </form>
     </div>
   )
-}
-
-export default BudgetForm
+};

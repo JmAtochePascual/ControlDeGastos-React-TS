@@ -2,9 +2,9 @@ import { CircularProgressbar, buildStyles } from 'react-circular-progressbar';
 import 'react-circular-progressbar/dist/styles.css';
 import { useContext } from "react";
 import { BudgetContext } from "../context/BudgetContext";
-import AmountDisplay from "./AmountDisplay"
+import { AmountDisplay } from './AmountDisplay';
 
-const BudgetTracker = () => {
+export const BudgetTracker = () => {
   const { state, dispatch, gastado, disponible } = useContext(BudgetContext);
   const { budget } = state;
   const percentage = +((gastado / budget) * 100).toFixed(2);
@@ -52,6 +52,4 @@ const BudgetTracker = () => {
       </div>
     </section>
   )
-}
-
-export default BudgetTracker
+};

@@ -4,9 +4,9 @@ import { categories } from "../data/categories"
 import { INITIAL_EXPENSE } from "../data/expense"
 import { TExpense } from "../types";
 import { BudgetContext } from "../context/BudgetContext";
-import Error from './Error';
+import { Error } from './Error';
 
-const ExpenseForm = () => {
+export const ExpenseForm = () => {
   const { state, dispatch, disponible } = useContext(BudgetContext);
   const { editId, expenses } = state;
   const [expense, setExpense] = useState<TExpense>(INITIAL_EXPENSE);
@@ -144,6 +144,4 @@ const ExpenseForm = () => {
         className="w-full p-2 bg-blue-600 text-white font-bold uppercase rounded-md cursor-pointer hover:bg-blue-700 disabled:opacity-35 disabled:cursor-not-allowed" />
     </form>
   )
-}
-
-export default ExpenseForm
+};

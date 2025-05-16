@@ -2,9 +2,9 @@ import { useContext } from 'react'
 import { PlusCircleIcon } from '@heroicons/react/24/solid'
 import { Dialog, DialogPanel } from '@headlessui/react'
 import { BudgetContext } from '../context/BudgetContext'
-import ExpenseForm from './ExpenseForm';
+import { ExpenseForm } from './ExpenseForm';
 
-export default function ExpenseModal() {
+export function ExpenseModal() {
   const { state, dispatch } = useContext(BudgetContext);
   const { isModalOpen } = state;
 
@@ -37,4 +37,4 @@ export default function ExpenseModal() {
       </Dialog>
     </>
   )
-}
+};
