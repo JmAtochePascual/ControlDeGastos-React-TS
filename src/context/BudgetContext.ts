@@ -8,5 +8,4 @@ type BudgetContextProps = {
   disponible: number;
 }
 
-// Primero se Crea el Contexto
 export const BudgetContext = createContext<BudgetContextProps>(null!);

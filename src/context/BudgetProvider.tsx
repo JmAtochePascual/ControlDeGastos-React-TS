@@ -4,8 +4,8 @@ import { BudgetContext } from "./BudgetContext";
 
 type BudgetProviderProps = {
   children: ReactNode;
-}
-// Segundo se Crea el Provider
+};
+
 const BudgetProvider = ({ children }: BudgetProviderProps) => {
   const [state, dispatch] = useReducer(budgetReducer, initialBudgetState);
   const gastado = state.expenses.reduce((acc, expense) => acc + expense.amount, 0);
@@ -17,6 +17,6 @@ const BudgetProvider = ({ children }: BudgetProviderProps) => {
       {children}
     </BudgetContext.Provider>
   )
-}
+};
 
 export default BudgetProvider

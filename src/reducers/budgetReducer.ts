@@ -29,16 +29,15 @@ export const initialBudgetState: BudgetState = {
   isModalOpen: false,
 }
 
-// Reducer
 export const budgetReducer = (state: BudgetState, action: BudgetAction) => {
 
   if (action.type === "add-budget") {
-    return { ...state, budget: action.payload }
-  }
+    return { ...state, budget: action.payload };
+  };
 
   if (action.type === "add-expense") {
     return { ...state, expenses: [...state.expenses, action.payload], isModalOpen: !state.isModalOpen }
-  }
+  };
 
   if (action.type === "edit-expense") {
     return {
@@ -46,32 +45,32 @@ export const budgetReducer = (state: BudgetState, action: BudgetAction) => {
       expenses: state.expenses.map(expense => expense.id === action.payload.id ? action.payload : expense),
       isModalOpen: !state.isModalOpen,
       editId: ""
-    }
-  }
+    };
+  };
 
   if (action.type === "delete-expense") {
-    return { ...state, expenses: state.expenses.filter(expense => expense.id !== action.payload) }
-  }
+    return { ...state, expenses: state.expenses.filter(expense => expense.id !== action.payload) };
+  };
 
   if (action.type === "set-editId") {
-    return { ...state, editId: action.payload, isModalOpen: !state.isModalOpen }
-  }
+    return { ...state, editId: action.payload, isModalOpen: !state.isModalOpen };
+  };
 
   if (action.type === "set-filterCategory") {
-    return { ...state, filterCategoryId: action.payload }
-  }
+    return { ...state, filterCategoryId: action.payload };
+  };
 
   if (action.type === "show-modal") {
-    return { ...state, isModalOpen: true }
-  }
+    return { ...state, isModalOpen: true };
+  };
 
   if (action.type === "hide-modal") {
-    return { ...state, isModalOpen: false, editId: "" }
-  }
+    return { ...state, isModalOpen: false, editId: "" };
+  };
 
   if (action.type === "reset-app") {
-    return { budget: 0, expenses: [], editId: "", filterCategoryId: "", isModalOpen: false }
-  }
+    return { budget: 0, expenses: [], editId: "", filterCategoryId: "", isModalOpen: false };
+  };
 
   return state;
-}
+};
