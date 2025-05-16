@@ -1,8 +1,26 @@
-# ⚡️ Control de Gasto
+# Control de Gasto
 
 Control de Gasto es una aplicación web diseñada para ayudar a los usuarios a administrar sus gastos de manera efectiva. Ofrece la capacidad de establecer un presupuesto y registrar gastos, lo que permite a los usuarios llevar un seguimiento detallado de sus finanzas y tomar decisiones informadas sobre sus gastos futuros.
 
-## 🛠️ Tecnologías Utilizadas
+## Características
+
+- **Registro de Gastos**: Permite a los usuarios agregar gastos, especificando la cantidad, categoría y fecha.
+- **Cálculo de Presupuesto**: Muestra el presupuesto total, el gasto realizado y el saldo disponible.
+- **Interfaz Responsiva**: Asegura que la aplicación se vea bien en dispositivos de diferentes tamaños.
+- **Persistencia de Datos**: Utiliza `localStorage` para mantener el registro de gastos incluso después de recargar la página.
+- **Manejo de Estado**: Utiliza `useReducer` para gestionar el estado de los gastos de manera eficiente.
+- **Filtrado de Gastos**: Permite a los usuarios filtrar los gastos por categoría.
+- **Despliegue Automático**: Facilita el acceso a la aplicación en línea a través de GitHub Pages.
+
+## Tecnologías
+
+![HTML5](https://img.shields.io/badge/html5-%23E34F26.svg?style=for-the-badge&logo=html5&logoColor=white)
+![CSS3](https://img.shields.io/badge/css3-%231572B6.svg?style=for-the-badge&logo=css3&logoColor=white)
+![JavaScript](https://img.shields.io/badge/javascript-%23323330.svg?style=for-the-badge&logo=javascript&logoColor=%23F7DF1E)
+![TypeScript](https://img.shields.io/badge/typescript-%23007ACC.svg?style=for-the-badge&logo=typescript&logoColor=white)
+![TailwindCSS](https://img.shields.io/badge/tailwindcss-%2338B2AC.svg?style=for-the-badge&logo=tailwind-css&logoColor=white)
+![React](https://img.shields.io/badge/react-%2320232a.svg?style=for-the-badge&logo=react&logoColor=%2361DAFB)
+![Vite](https://img.shields.io/badge/vite-%23646CFF.svg?style=for-the-badge&logo=vite&logoColor=white)
 
 - **React**: Framework principal para la construcción de la interfaz de usuario
 - **TypeScript**: Lenguaje de programación que agrega tipado estático a JavaScript
@@ -16,7 +34,7 @@ Control de Gasto es una aplicación web diseñada para ayudar a los usuarios a a
 - **ContextAPI**: Para proporcionar un estado global accesible en toda la aplicación
 - **Custom Hooks**: Para reutilizar lógica específica y mantener el código más limpio y modular
 
-## 📁 Estructura del Proyecto
+## Estructura del Proyecto
 
 - **src/**: Contiene el código fuente de la aplicación.
   - **components/**: Componentes reutilizables que forman la interfaz de usuario.
@@ -40,81 +58,62 @@ Control de Gasto es una aplicación web diseñada para ayudar a los usuarios a a
     - `budgetReducer.ts`: Reducer que maneja las acciones relacionadas con el presupuesto y los gastos.
   - `App.tsx`: Componente principal que integra todos los componentes y gestiona el estado global.
 
-## 🚀 Características Principales
+## Instalación
 
-- **Registro de Gastos**: Permite a los usuarios agregar gastos, especificando la cantidad, categoría y fecha.
-- **Cálculo de Presupuesto**: Muestra el presupuesto total, el gasto realizado y el saldo disponible.
-- **Interfaz Responsiva**: Asegura que la aplicación se vea bien en dispositivos de diferentes tamaños.
-- **Persistencia de Datos**: Utiliza `localStorage` para mantener el registro de gastos incluso después de recargar la página.
-- **Manejo de Estado**: Utiliza `useReducer` para gestionar el estado de los gastos de manera eficiente.
-- **Filtrado de Gastos**: Permite a los usuarios filtrar los gastos por categoría.
-- **Despliegue Automático**: Facilita el acceso a la aplicación en línea a través de GitHub Pages.
+> Para trabajar con este proyecto, necesitarás tener instalado:
+>
+> - **Node.js** (versión 14 o superior)
 
-## 🛠️ Instalación y Uso
+## Uso
 
-1. Clona el repositorio:
+Para visualizar el proyecto localmente, sigue estos pasos:
 
+1. Clona este repositorio:
+
+```
+git clone https://github.com/JMatochePascual/ControlDeGastos-React-TS.git
+```
+
+2. Navega al directorio del proyecto:
+
+```
+cd ControlDeGastos-React-TS
+```
+
+3. Instala las dependencias necesarias:
+
+```
+npm install
+```
+
+4. Inicia el servidor en modo desarrollo:
+
+```
+npm run dev
+```
+
+## Contribución
+
+Si deseas contribuir al proyecto, por favor sigue estos pasos en orden:
+
+1. Haz un fork del repositorio
+
+2. Crea una nueva rama para tu funcionalidad:
    ```bash
-   git clone https://github.com/JMatochePascual/ControlDeGastos-React-TS.git
+   git checkout -b feature-name
    ```
-
-2. Instala las dependencias:
-
+3. Realiza y confirma tus cambios:
    ```bash
-   npm install
+   git commit -am 'Add new feature'
    ```
-
-3. Inicia el servidor de desarrollo:
-
+4. Sube los cambios a tu repositorio:
    ```bash
-   npm run dev
+   git push origin feature-name
    ```
+5. Abre un Pull Request desde tu repositorio hacia el proyecto principal
 
-4. Abre tu navegador en:
-   ```bash
-   http://localhost:5173
-   ```
+## Licencia
 
-## 🤝 Contribución
+Este proyecto se encuentra disponible bajo la licencia MIT. Puedes consultar los términos completos [aquí](https://opensource.org/licenses/MIT).
 
-Si deseas contribuir al proyecto, sigue estos pasos:
-
-1. Haz un Fork del repositorio:
-
-   ```bash
-   git remote add upstream https://github.com/JMatochePascual/ControlDeGastos-React-TS.git
-   ```
-
-2. Crea una nueva rama:
-
-   ```bash
-   git checkout -b feature/nueva-caracteristica
-   ```
-
-3. Realiza tus cambios y haz commit:
-
-   ```bash
-   git add .
-   git commit -m "Agrega nueva característica"
-   ```
-
-4. Sube los cambios a tu Fork:
-
-   ```bash
-   git push origin feature/nueva-caracteristica
-   ```
-
-5. Abre un Pull Request desde tu repositorio al repositorio original.
-
-Por favor, antes de realizar cambios importantes:
-
-- Abre un Issue para discutir las modificaciones propuestas.
-- Asegúrate de que tu código sigue las convenciones del proyecto.
-- Incluye tests si es necesario.
-- Actualiza la documentación según corresponda.
-
-## 📝 Licencia
-
-Este proyecto está bajo la licencia [MIT](https://opensource.org/licenses/MIT).
-
-<p style="text-align: center">Hecho con 💚 por JMCode | ©2025 - Transformando ideas en realidad.</p>
+Desarrollado con 💚 por JMCode | © 2025 - Transformando ideas en soluciones digitales.
